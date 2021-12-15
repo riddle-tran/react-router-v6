@@ -3,7 +3,7 @@ import React from "react";
 export const AuthInitialState = {
   isAuth: false,
   isAdmin: false,
-  initialized: true,
+  initialized: false,
 };
 
 export const authReducer = (prevState, action) => {

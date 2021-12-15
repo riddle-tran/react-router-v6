@@ -105,11 +105,13 @@ export function AppLoading(props) {
 }
 
 export function RouteComponentWrapper(route, key) {
-  let location = useLocation();
   const { authState } = useContext(AuthContext);
+  let location = useLocation();
 
   if (!authState.initialized)
-    return <Route path={location.pathname} element={<LoadingSpinner />} />;
+    return (
+      <Route key={key} path={location.pathname} element={<LoadingSpinner />} />
+    );
 
   if (!authState.isAuth && route.isAuth)
     return (
@@ -147,9 +149,7 @@ export function RouteComponentWrapper(route, key) {
   }
   return (
     <Route path={route.path} element={<route.element />} key={key}>
-      {route.index ? (
-        <Route index element={<route.index/>} />
-      ) : undefined}
+      {route.index ? <Route index element={<route.index />} /> : undefined}
       {route.routes ? RenderRoutes(route.routes) : undefined}
     </Route>
   );
