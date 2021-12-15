@@ -1,5 +1,7 @@
 import React, { useCallback, useContext } from "react";
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
+
+import { Routes } from "../Routes";
 import { AuthContext } from "../context/AuthContext";
 
 function Admin() {
@@ -18,7 +20,19 @@ function Admin() {
      <form onSubmit={handleSignOut}>
         <button type="submit">SignOut</button>
       </form>
-      <div>Home</div>
+      <div>
+        {Object.values(Routes.admin.routes).map((route, index) =>
+          route.path !== "*" ? (
+            <div key={index}>
+              <Link to={route.path}>
+                {route.path}
+              </Link>
+            </div>
+          ) : undefined
+        )}
+      </div>
+      <hr/>
+      <div>Admin</div>
       <Outlet/>
       <div>End</div>
     </>

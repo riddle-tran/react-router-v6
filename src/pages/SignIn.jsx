@@ -19,7 +19,7 @@ const SignIn = () => {
   const handleAdminSubmit = useCallback(
     (event) => {
       event.preventDefault();
-      authDispatch({ type: "signInAsAdmin", isAdmin: true });
+      authDispatch({ type: "signInAsAdmin",isAuth:true, isAdmin: true });
     },
     [authDispatch]
   );

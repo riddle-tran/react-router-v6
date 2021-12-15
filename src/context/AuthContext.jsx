@@ -13,7 +13,7 @@ export const authReducer = (prevState, action) => {
     case "signIn":
       return { ...prevState, initialized: true, isAuth: action.isAuth };
     case "signInAsAdmin":
-      return { ...prevState, initialized: true, isAdmin: action.isAdmin };
+      return { ...prevState, initialized: true, isAuth:action.isAuth, isAdmin: action.isAdmin };
     case "signOut":
       return { ...prevState, initialized: true, isAdmin: false, isAuth: false };
     default:

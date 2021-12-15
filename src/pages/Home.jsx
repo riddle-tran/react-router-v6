@@ -1,9 +1,11 @@
 import React, { useCallback, useContext } from "react";
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
+
 import { AuthContext } from "../context/AuthContext";
+import { Routes } from "../Routes";
 
 function Home() {
-  const {  authDispatch } = useContext(AuthContext);
+  const { authDispatch } = useContext(AuthContext);
 
   const handleSignOut = useCallback(
     (event) => {
@@ -15,11 +17,23 @@ function Home() {
 
   return (
     <>
-     <form onSubmit={handleSignOut}>
+      <form onSubmit={handleSignOut}>
         <button type="submit">SignOut</button>
       </form>
+      <div>
+        {Object.values(Routes.home.routes).map((route, index) =>
+          route.path !== "*" ? (
+            <div key={index} >
+              <Link to={route.path}>
+                {route.path}
+              </Link>
+            </div>
+          ) : undefined
+        )}
+      </div>
+      <hr/>
       <div>Home</div>
-      <Outlet/>
+      <Outlet />
       <div>End</div>
     </>
   );

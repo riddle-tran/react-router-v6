@@ -14,6 +14,8 @@ import {
   ChildOne,
   ChildTwo,
   SentInvoices,
+  User,
+  Roles,
 } from "./pages";
 
 const DefaultComponent = () => {
@@ -30,17 +32,34 @@ export const Routes = {
     element: Admin,
     isAuth: true,
     isAdmin: true,
+    index: User,
+    routes: {
+      user: {
+        path: "user",
+        element: User,
+        isAuth: true,
+      },
+      Roles: {
+        path: "roles",
+        element: Roles,
+        isAuth: true,
+      },
+      default: {
+        path: "*",
+        element: DefaultComponent,
+      },
+    },
   },
   home: {
     path: "/",
     isAuth: true,
     element: Home,
+    index: Activity,
     routes: {
       activity: {
         path: "activity",
         element: Activity,
         isAuth: true,
-        index: true,
       },
       invoice: {
         path: "invoice",
@@ -50,13 +69,13 @@ export const Routes = {
       sentInvoices: {
         path: "sentInvoices",
         element: SentInvoices,
+        index: ChildOne,
         isAuth: true,
         routes: {
           activity: {
             path: "child-one",
             element: ChildOne,
             isAuth: true,
-            index: true,
           },
           invoice: {
             path: "child-two",
@@ -97,7 +116,9 @@ export function RouteComponentWrapper(route, key) {
       <Route
         key={key}
         path={route.path}
-        element={<Navigate to={Routes.signIn.path} state={{ from: location }} />}
+        element={
+          <Navigate to={Routes.signIn.path} state={{ from: location }} />
+        }
       />
     );
 
@@ -125,7 +146,10 @@ export function RouteComponentWrapper(route, key) {
     }
   }
   return (
-    <Route path={route.path} index={route.index} element={<route.element />} key={key}>
+    <Route path={route.path} element={<route.element />} key={key}>
+      {route.index ? (
+        <Route index element={<route.index/>} />
+      ) : undefined}
       {route.routes ? RenderRoutes(route.routes) : undefined}
     </Route>
   );

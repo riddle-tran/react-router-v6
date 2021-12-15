@@ -1,44 +1,21 @@
-import Loadable from "react-loadable";
-import { LoadingSpinner } from "../components";
+import loadable from "@loadable/component";
 
-export const Activity = Loadable({
-  loader: () => import("./Activity"),
-  loading: LoadingSpinner,
-});
+export const Activity = loadable(() => import("./Activity"));
 
-export const Admin = Loadable({
-  loader: () => import("./Admin"),
-  loading: LoadingSpinner,
-});
+export const Admin = loadable(() => import("./Admin"));
 
-export const Home = Loadable({
-  loader: () => import("./Home"),
-  loading: LoadingSpinner,
-});
+export const Home = loadable(() => import("./Home"));
 
-export const Invoice = Loadable({
-  loader: () => import("./Invoice"),
-  loading: LoadingSpinner,
-});
+export const Invoice = loadable(() => import("./Invoice"));
 
-export const SignIn = Loadable({
-  loader: () => import("./SignIn"),
-  loading: LoadingSpinner,
-});
+export const SignIn = loadable(() => import("./SignIn"));
 
-export const SentInvoices = Loadable({
-  loader: () => import("./SentInvoices"),
-  loading: LoadingSpinner,
-});
+export const SentInvoices = loadable(() => import("./SentInvoices"));
 
+export const ChildOne = loadable(() => import("./ChildOne"));
 
+export const ChildTwo = loadable(() => import("./ChildTwo"));
 
-export const ChildOne = Loadable({
-  loader: () => import("./ChildOne"),
-  loading: LoadingSpinner,
-});
+export const User = loadable(() => import("./User"));
 
-export const ChildTwo = Loadable({
-  loader: () => import("./ChildTwo"),
-  loading: LoadingSpinner,
-});
+export const Roles = loadable(() => import("./Roles"));
